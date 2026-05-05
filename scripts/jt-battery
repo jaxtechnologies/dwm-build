@@ -6,7 +6,7 @@ perc=$(cat /sys/class/power_supply/BAT0/capacity)
 status=$(cat /sys/class/power_supply/BAT0/status)
 
 if [ "$status" = "Charging" ]; then
-    echo "🔋 $perc% 🔺"
+    echo "🔌 $perc% 🔺"
 elif [ "$status" = "Discharging" ]; then
     echo "🔋 $perc% 🔻"
 else
