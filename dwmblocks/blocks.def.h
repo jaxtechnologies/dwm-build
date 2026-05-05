@@ -3,13 +3,13 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	{"🐧", 	"~/scripts/jt-kernel",		3600,		0},
 
-	{"", 	"~/scripts/jt-battery",		60,		0},
-
 	{"💿", 	"~/scripts/jt-disk",		60,		0},
 
-	{"🧠",	"~/scripts/jt-memory.sh",		30,		0},
+	{"🧠",	"~/scripts/jt-memory",		30,		0},
 
 	{"🕛", 	"~/scripts/jt-clock",		5,		0},
+
+	{"", 	"~/scripts/jt-battery",		60,		0},
 };
 
 //sets delimiter between status commands. NULL character ('\0') means no delimiter.
