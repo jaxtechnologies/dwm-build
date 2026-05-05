@@ -10,6 +10,6 @@ if [ "$status" = "Charging" ]; then
 elif [ "$status" = "Discharging" ]; then
     echo " 🔋 $perc% 🔻"
 else
-    echo " 🔋 $perc% 🚫"
+    echo " 🔌 "
 fi
 
