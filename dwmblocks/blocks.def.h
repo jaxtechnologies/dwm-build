@@ -3,9 +3,11 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	{"🐧 ", 	"~/scripts/jt-kernel",		3600,		0},
 
+	{"📦 ", 	"~/scripts/jt-checkup",		3600,		0},
+
 	{"💿 ", 	"~/scripts/jt-disk",		60,		0},
 
-	{"🧠 ",	"~/scripts/jt-memory",		30,		0},
+	{"🧠 ",		"~/scripts/jt-memory",		30,		0},
 
 	{"📅 ", 	"~/scripts/jt-date",		5,		0},
 
