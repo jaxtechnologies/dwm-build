@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Get pacman updates available
+check=$(checkupdates | wc -l)
+echo "$check updates"
+
