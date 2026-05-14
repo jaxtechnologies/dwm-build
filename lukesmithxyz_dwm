@@ -43,41 +43,41 @@ sleep 10
 
 clear
 
-cp -r $INSTALL_PATH/src/lukesmithxyz/dwm ~/.config/dwm 2>&1 | tee -a $LOG
+cp -r $INSTALL_PATH/src/lukesmithxyz/dwm ~/.config/ 2>&1 | tee -a $LOG
 ###git clone https://github.com/lukesmithxyz/dwm ~/dwm
 cd ~/.config/dwm
 echo "Compiling dwm - Dynamic Window Manager"
-sudo make install
+sudo make && sudo make install
 echo "Compiling dwm - Complete"
 sleep 10
 
 clear
 
-cp -r $INSTALL_PATH/src/lukesmithxyz/dmenu ~/.config/dmenu 2>&1 | tee -a $LOG
+cp -r $INSTALL_PATH/src/lukesmithxyz/dmenu ~/.config/ 2>&1 | tee -a $LOG
 ###git clone https://github.com/lukesmithxyz/dmenu ~/dmenu
 cd ~/.config/dmenu
 echo "Compiling dmenu - Dynamic Menu"
-sudo make install
+sudo make && sudo make install
 echo "Compiling dmenu - Complete"
 sleep 10
 
 clear
 
-cp -r $INSTALL_PATH/src/lukesmithxyz/st ~/.config/st 2>&1 | tee -a $LOG
+cp -r $INSTALL_PATH/src/lukesmithxyz/st ~/.config/ 2>&1 | tee -a $LOG
 ###git clone https://github.com/lukesmithxyz/st ~/st
 cd ~/.config/st
 echo "Compiling st - Simple Terminal"
-sudo make install
+sudo make && sudo make install
 echo "Compiling st - Complete"
 sleep 10
 
 clear
 
-cp -r $INSTALL_PATH/src/lukesmithxyz/dwmblocks ~/.config/dwmblocks 2>&1 | tee -a $LOG
+cp -r $INSTALL_PATH/src/lukesmithxyz/dwmblocks ~/.config/ 2>&1 | tee -a $LOG
 ###git clone https://github.com/lukesmithxyz/dwmblocks ~/dwmblocks
 cd ~/.config/dwmblocks
 echo "Compiling dwmblocks - Modular status bar"
-make && sudo make install
+sudo make && sudo make install
 echo "Compiling dwmblocks - Complete"
 sleep 10
 
