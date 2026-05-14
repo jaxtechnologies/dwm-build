@@ -83,28 +83,26 @@ sleep 10
 
 clear
 
+cp -r $INSTALL_PATH/src/lukesmithxyz/dotfiles/.config/* ~/.config/ 2>&1 | tee -a $LOG
+cp -r $INSTALL_PATH/src/lukesmithxyz/dotfiles/.local/* ~/.local/ 2>&1 | tee -a $LOG
+cp -r $INSTALL_PATH/src/lukesmithxyz/dotfiles/.gitmodules ~/ 2>&1 | tee -a $LOG
+cp -r $INSTALL_PATH/src/lukesmithxyz/dotfiles/.gtkrc-2.0 ~/ 2>&1 | tee -a $LOG
+cp -r $INSTALL_PATH/src/lukesmithxyz/dotfiles/.xprofile ~/ 2>&1 | tee -a $LOG
+cp -r $INSTALL_PATH/src/lukesmithxyz/dotfiles/.zprofile ~/ 2>&1 | tee -a $LOG
+echo "Dotfiles Copy Complete"
+sleep 10
+
+clear
+
 echo ""
 echo "Please enter sudo password if requested..."
 echo ""
 sleep 5
 
-##### scripts -- Make sure scripts directory exists and add scripts if it doesn't exist
-[ ! -d ~/scripts ] && mkdir -p ~/scripts 2>&1 | tee -a $LOG
-cp $INSTALL_PATH/scripts/* ~/scripts/ 2>&1 | tee -a $LOG
-
 ##### xsessions -- Make sure xsessions directory exists and add dwm.desktop file
 ##### This file allows users to select DWM as a session option when logging into their system through a display manager.
-[ ! -d /usr/share/xsessions ] && sudo mkdir -p /usr/share/xsessions 2>&1 | tee -a $LOG
-sudo cp $INSTALL_PATH/configs/dwm.desktop /usr/share/xsessions/ 2>&1 | tee -a $LOG
-
-
-##### .vimrc & init.vim -- Add .vimrc file to $HOME directory and init.vim file to neovim config
-[ ! -d ~/.config/nvim ] && mkdir -p ~/.config/nvim/ 2>&1 | tee -a $LOG
-cp $INSTALL_PATH/configs/.vimrc ~/.config/nvim/init.vim 2>&1 | tee -a $LOG
-cp $INSTALL_PATH/configs/.vimrc ~/ 2>&1 | tee -a $LOG
-
-##### .xprofile -- Add file for .xprofile to home directory to launch wallpaper via feh and exec dwm on login
-cp $INSTALL_PATH/configs/.xprofile ~/.xprofile 2>&1 | tee -a $LOG
+# [ ! -d /usr/share/xsessions ] && sudo mkdir -p /usr/share/xsessions 2>&1 | tee -a $LOG
+# sudo cp $INSTALL_PATH/configs/dwm.desktop /usr/share/xsessions/ 2>&1 | tee -a $LOG
 
 ##### lightdm -- Enable and start lightdm
 echo "Enabling and starting lightdm..."
