@@ -33,6 +33,33 @@ sleep 5
 
 clear
 
+# Package to install on Archcraft
+PACKAGE_NAME="gtk3-nocsd-git"
+
+# Detect distro from /etc/os-release
+if [[ -f /etc/os-release ]]; then
+    . /etc/os-release
+
+    # Check for Archcraft
+    if [[ "$ID" == "archcraft" ]] || [[ "$NAME" == *"Archcraft"* ]]; then
+        echo "Archcraft detected."
+        echo "Installing package: $PACKAGE_NAME"
+
+        sudo pacman -Sy --needed --noconfirm "$PACKAGE_NAME"
+
+    # Check for regular Arch Linux
+    elif [[ "$ID" == "arch" ]]; then
+        echo "Arch Linux detected."
+        echo "No action needed."
+
+    else
+        echo "Unsupported distribution: $NAME"
+    fi
+else
+    echo "Cannot determine Linux distribution."
+    exit 1
+fi
+
 ##################################################################################################
 #################################### INSTALL BASE APPS ###########################################
 ##################################################################################################
