@@ -100,11 +100,30 @@ echo "Please enter sudo password if requested..."
 echo ""
 sleep 5
 
+##### wallpapers -- Make sure wallpapers directory exists or add wallpapers if it doesn't exist
+[ ! -d ~/wallpapers ] && mkdir -p ~/wallpapers 2>&1 | tee -a $LOG
+cp $INSTALL_PATH/wallpapers/* ~/wallpapers/ 2>&1 | tee -a $LOG
+
 ##### xsessions -- Make sure xsessions directory exists and add dwm.desktop file
 ##### This file allows users to select DWM as a session option when logging into their system through a display manager.
 [ ! -d /usr/share/xsessions ] && sudo mkdir -p /usr/share/xsessions 2>&1 | tee -a $LOG
 sudo cp $INSTALL_PATH/src/jaxtech/.config/dwm.desktop /usr/share/xsessions/ 2>&1 | tee -a $LOG
 chsh -s /bin/zsh
+#chsh -s /bin/fish
+
+##### sxiv -- Make sure ~/.config/sxiv/exec directory exists and add key-handler file
+[ ! -d ~/.trash ] && mkdir -p ~/.trash 2>&1 | tee -a $LOG
+[ ! -d ~/.config/sxiv/exec ] && mkdir -p ~/.config/sxiv/exec 2>&1 | tee -a $LOG
+cp $INSTALL_PATH/configs/key-handler ~/.config/sxiv/exec/ 2>&1 | tee -a $LOG
+cp $INSTALL_PATH/configs/gxmessage_wallpaper ~/gxmessage_wallpaper 2>&1 | tee -a $LOG
+
+##### .vimrc & init.vim -- Add .vimrc file to $HOME directory and init.vim file to neovim config
+[ ! -d ~/.config/nvim ] && mkdir -p ~/.config/nvim/ 2>&1 | tee -a $LOG
+cp $INSTALL_PATH/configs/.vimrc ~/.config/nvim/init.vim 2>&1 | tee -a $LOG
+cp $INSTALL_PATH/configs/.vimrc ~/ 2>&1 | tee -a $LOG
+
+##### .xprofile -- Add file for .xprofile to home directory to launch wallpaper via feh and exec dwm on login
+cp $INSTALL_PATH/configs/.xprofile ~/.xprofile 2>&1 | tee -a $LOG
 
 ##### lightdm -- Enable and start lightdm
 echo "Enabling and starting lightdm..."
