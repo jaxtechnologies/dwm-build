@@ -118,9 +118,7 @@ sudo cp $INSTALL_PATH/dotfiles/dwm.desktop /usr/share/xsessions/ 2>&1 | tee -a $
 chsh -s /bin/zsh
 #chsh -s /bin/fish
 
-##### .vimrc & init.vim -- Add .vimrc file to $HOME directory and init.vim file to neovim config
-[ ! -d ~/.config/nvim ] && mkdir -p ~/.config/nvim/ 2>&1 | tee -a $LOG
-cp $INSTALL_PATH/dotfiles/.vimrc ~/.config/nvim/init.vim 2>&1 | tee -a $LOG
+##### .vimrc -- Add .vimrc file to $HOME directory
 cp $INSTALL_PATH/dotfiles/.vimrc ~/ 2>&1 | tee -a $LOG
 
 ##### lightdm -- Enable and start lightdm
