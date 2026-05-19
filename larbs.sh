@@ -4,6 +4,14 @@
 # by Luke Smith <luke@lukesmith.xyz>
 # License: GNU GPLv3
 
+# Function to check for root
+check_root() {
+    if [[ $EUID -ne 0 ]]; then
+        echo "This script must be run as root."
+        exit 1
+    fi
+}
+
 ### OPTIONS AND VARIABLES ###
 INSTALL_PATH=$(pwd)
 LOG=$INSTALL_PATH/dwm_setup.log
@@ -43,9 +51,6 @@ echo " Jax|Tech Setup Script will launch in 5 seconds..."
 sleep 5
 
 clear
-
-sudo pacman -Syu
-
 
 ### FUNCTIONS ###
 
@@ -245,7 +250,11 @@ finalize() {
 
 ### This is how everything happens in an intuitive format and order.
 
+
+
 # Check if user is root on Arch distro. Install whiptail.
+check_root
+pacman -Syu
 pacman --noconfirm --needed -Sy libnewt ||
 	error "Are you sure you're running this as the root user, are on an Arch-based distribution and have an internet connection?"
 
