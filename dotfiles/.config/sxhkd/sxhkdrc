@@ -11,4 +11,4 @@ super + shift + w
   sxiv ~/wallpapers
 
 super + shift + h
-  gxmessage -geometry 400x600 -timeout 0 -file ~/keybindings
+  gxmessage -geometry 400x600 -timeout 0 -file ~/.config/gxmessage/gxmessage_keybindings
