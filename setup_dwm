@@ -33,48 +33,48 @@ sleep 5
 
 clear
 
-# Package to install on Archcraft
-PACKAGE_NAME="gtk3-nocsd-git"
-
-# Detect distro from /etc/os-release
-if [[ -f /etc/os-release ]]; then
-    . /etc/os-release
-
-    # Check for Archcraft
-    if [[ "$ID" == "archcraft" ]] || [[ "$NAME" == *"Archcraft"* ]]; then
-        echo "Archcraft detected."
-        echo "Installing package: $PACKAGE_NAME"
-
-        sudo pacman -Sy --needed --noconfirm "$PACKAGE_NAME"
-
-    # Check for regular Arch Linux
-    elif [[ "$ID" == "arch" ]]; then
-        echo "Arch Linux detected."
-        #echo "No action needed."
-
-    else
-        echo "Unsupported distribution: $NAME"
-    fi
-else
-    echo "Cannot determine Linux distribution."
-    exit 1
-fi
+## Package to install on Archcraft
+#PACKAGE_NAME="gtk3-nocsd-git"
+#
+## Detect distro from /etc/os-release
+#if [[ -f /etc/os-release ]]; then
+#    . /etc/os-release
+#
+#    # Check for Archcraft
+#    if [[ "$ID" == "archcraft" ]] || [[ "$NAME" == *"Archcraft"* ]]; then
+#        echo "Archcraft detected."
+#        echo "Installing package: $PACKAGE_NAME"
+#
+#        sudo pacman -Sy --needed --noconfirm "$PACKAGE_NAME"
+#
+#    # Check for regular Arch Linux
+#    elif [[ "$ID" == "arch" ]]; then
+#        echo "Arch Linux detected."
+#        #echo "No action needed."
+#
+#    else
+#        echo "Unsupported distribution: $NAME"
+#    fi
+#else
+#    echo "Cannot determine Linux distribution."
+#    exit 1
+#fi
 
 ##################################################################################################
 #################################### INSTALL BASE APPS ###########################################
 ##################################################################################################
-error_handler() {
-    echo ""
-    echo "An error occurred. Press Enter to continue..."
-    read
-}
-
-trap 'error_handler' ERR
+#error_handler() {
+#    echo ""
+#    echo "An error occurred. Press Enter to continue..."
+#    read
+#}
+#
+#trap 'error_handler' ERR
 
 sudo pacman -Syu fish eza fastfetch git vim neovim gcc make base-devel pkgconf xorg xorg-xinit feh gxmessage sxiv python-pywal \
 terminus-font ttf-mononoki-nerd noto-fonts-emoji lightdm lightdm-gtk-greeter openssh firefox qutebrowser mousepad figlet sxhkd \
 slock dunst xwallpaper calcurse xcompmgr zathura unclutter
-sleep 10
+sleep 20
 
 clear
 
