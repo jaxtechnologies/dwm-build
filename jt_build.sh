@@ -23,8 +23,19 @@ https://artixlinux.org/feed.php \"tech\"
 https://www.archlinux.org/feeds/news/ \"tech\"
 https://github.com/LukeSmithxyz/voidrice/commits/master.atom \"~LARBS dotfiles\""
 
+################################################################################
+################################ FUNCTIONS #####################################
+################################################################################
 
-##### FUNCTIONS #####
+check_root() {
+    if [[ $EUID -ne 0 ]]; then
+	    clear
+		echo ""
+        echo " This script must be run as root... Run the following command:  sudo sh jt_build.sh"
+		echo ""
+        exit 1
+    fi
+}
 
 jt_splash() {
 	clear
@@ -43,16 +54,6 @@ jt_splash() {
 	sleep 5
 	
 	clear
-}
-
-check_root() {
-    if [[ $EUID -ne 0 ]]; then
-	    clear
-		echo ""
-        echo " This script must be run as root... Run the following command:  sudo sh jt_build.sh"
-		echo ""
-        exit 1
-    fi
 }
 
 installpkg() {
@@ -222,15 +223,6 @@ putgitrepo() {
 	sudo -u "$name" cp -rfT "$dir" "$2"
 }
 
-#vimplugininstall() {
-#	# Installs vim plugins.
-#	whiptail --infobox "Installing neovim plugins..." 7 60
-#	mkdir -p "/home/$name/.config/nvim/autoload"
-#	curl -Ls "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" >  "/home/$name/.config/nvim/autoload/plug.vim"
-#	chown -R "$name:wheel" "/home/$name/.config/nvim"
-#	sudo -u "$name" nvim -c "PlugInstall|q|q"
-#}
-
 makeuserjs(){
 	# Get the Arkenfox user.js and prepare it.
 	arkenfox="$pdir/arkenfox.js"
@@ -247,11 +239,11 @@ finalize() {
 		--msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, log out and log back in as your new user, then run the command \"startx\" to start the graphical environment (it will start automatically in tty1).\\n\\n.t Luke" 13 80
 }
 
-##### THE ACTUAL SCRIPT #####
+################################################################################
+############################## MAIN SCRIPT #####################################
+################################################################################
 
-### This is how everything happens in an intuitive format and order.
-
-# Check if user is root on Arch distro. Install whiptail.
+# Check if user is root on Arch distro. Update and Install whiptail.
 check_root
 jt_splash
 pacman -Syu
