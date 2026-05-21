@@ -320,7 +320,7 @@ installationloop
 [ ! -d ~/.local ] && mkdir -p ~/.local 2>&1 | tee -a $LOG
 cp -r $INSTALL_PATH/dotfiles/.config/* ~/.config/ 2>&1 | tee -a $LOG
 cp -r $INSTALL_PATH/dotfiles/.local/* ~/.local/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.gitmodules ~/ 2>&1 | tee -a $LOG
+#cp -r $INSTALL_PATH/dotfiles/.gitmodules ~/ 2>&1 | tee -a $LOG
 cp -r $INSTALL_PATH/dotfiles/.gtkrc-2.0 ~/ 2>&1 | tee -a $LOG
 cp -r $INSTALL_PATH/dotfiles/.xprofile ~/ 2>&1 | tee -a $LOG
 cp -r $INSTALL_PATH/dotfiles/.zprofile ~/ 2>&1 | tee -a $LOG
