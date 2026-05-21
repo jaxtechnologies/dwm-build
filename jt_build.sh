@@ -47,7 +47,10 @@ jt_splash() {
 
 check_root() {
     if [[ $EUID -ne 0 ]]; then
-        echo "This script must be run as root... Run the following command:  sudo sh jaxtech_build.sh"
+	    clear
+		echo ""
+        echo " This script must be run as root... Run the following command:  sudo sh jaxtech_build.sh"
+		echo ""
         exit 1
     fi
 }
