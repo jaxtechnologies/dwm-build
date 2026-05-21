@@ -13,12 +13,8 @@ check_root() {
 }
 
 ### OPTIONS AND VARIABLES ###
-INSTALL_PATH=$(pwd)
-LOG=$INSTALL_PATH/dwm_setup.log
-rm $LOG > /dev/null 2>&1
-
-dotfilesrepo=$INSTALL_PATH/dotfiles/
-progsfile=$INSTALL_PATH/apps.csv
+dotfilesrepo="https://github.com/jaxtechnologies/jt-dotfiles.git"
+progsfile="https://raw.githubusercontent.com/jaxtechnologies/jt-build/master/apps_dwm.csv"
 aurhelper="yay"
 repobranch="master"
 export TERM=ansi
@@ -250,8 +246,6 @@ finalize() {
 
 ### This is how everything happens in an intuitive format and order.
 
-
-
 # Check if user is root on Arch distro. Install whiptail.
 check_root
 pacman -Syu
@@ -316,19 +310,8 @@ installationloop
 
 # Install the dotfiles in the user's home directory, but remove .git dir and
 # other unnecessary files.
-[ ! -d ~/.config ] && mkdir -p ~/.config 2>&1 | tee -a $LOG
-[ ! -d ~/.local ] && mkdir -p ~/.local 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.config/* ~/.config/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.local/* ~/.local/ 2>&1 | tee -a $LOG
-#cp -r $INSTALL_PATH/dotfiles/.gitmodules ~/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.gtkrc-2.0 ~/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.xprofile ~/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.zprofile ~/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.zshrc ~/ 2>&1 | tee -a $LOG
-echo "Dotfiles Copy Complete"
-sleep 20
-#putgitrepo "$dotfilesrepo" "/home/$name" "$repobranch"
-#rm -rf "/home/$name/.git/" "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
+putgitrepo "$dotfilesrepo" "/home/$name" "$repobranch"
+rm -rf "/home/$name/.git/" "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
 
 # Write urls for newsboat if it doesn't already exist
 [ -s "/home/$name/.config/newsboat/urls" ] ||
