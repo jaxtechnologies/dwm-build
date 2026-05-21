@@ -1,9 +1,15 @@
 #!/bin/sh
-
 # Jax|Tech's Build Script
 # by JaxTechnologies
 # Modeled after LukeSmith's LARBS Install
 # License: GNU GPLv3
+
+################################################################################
+#################################### To Do #####################################
+################################################################################
+#
+# Fix fonts and colors in terminal
+#
 
 ##### OPTIONS AND VARIABLES #####
 dotfilesrepo="https://github.com/jaxtechnologies/jt-dotfiles.git"
@@ -232,6 +238,11 @@ makeuserjs(){
 	[ ! -f "$arkenfox" ] && curl -sL "https://raw.githubusercontent.com/arkenfox/user.js/master/user.js" > "$arkenfox"
 	cat "$arkenfox" "$overrides" > "$userjs"
 	chown "$name:wheel" "$arkenfox" "$userjs"
+}
+
+lightdm_install() {
+sudo systemctl enable lightdm
+sudo systemctl start lightdm
 }
 
 finalize() {
