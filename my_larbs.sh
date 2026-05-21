@@ -7,7 +7,7 @@
 # Function to check for root
 check_root() {
     if [[ $EUID -ne 0 ]]; then
-        echo "This script must be run as root."
+        echo "This script must be run as root... Run the following command:  sudo sh jaxtech_build.sh"
         exit 1
     fi
 }
