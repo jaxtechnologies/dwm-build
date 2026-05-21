@@ -1,139 +1,11 @@
-#!/bin/bash
-# NAME: JT_DWM
-# DESC: An installation and deployment script for JaxTech's DWM Desktop.
-# Adapted from Derek Taylor's (DistroTube) DTOS script...
-# Top logo inspiration came from Chris Titus's ArchTitus script...
-
-
-################################################################################
-#################################### To Do #####################################
-################################################################################
-#
-# Fix fonts and colors in terminal
-#
-
-INSTALL_PATH=$(pwd)
-LOG=$INSTALL_PATH/dwm_setup.log
-rm $LOG > /dev/null 2>&1
-
-clear
-
-echo -ne "
-   ████████╗  █████╗  ██╗   ██╗  ████████╗ ███████╗  ██████╗ ██╗  ██╗
-   ╚══██╔══╝ ██╔══██╗  ██╗ ██╔╝  ╚══██╔══╝ ██╔════╝ ██╔════╝ ██║  ██║
-      ██║    ███████║   ████╔╝      ██║    ███████╗ ██║      ███████║
-   ██ ██║    ██╔══██║  ██╔╝██╗      ██║    ██╔════╝ ██║      ██╔══██║
-   ╚███╔╝    ██║  ██║ ██╔╝  ██╗     ██║    ███████╗ ╚██████╗ ██║  ██║
-    ╚══╝     ╚═╝  ╚═╝ ╚═╝   ╚═╝     ╚═╝    ╚══════╝  ╚═════╝ ╚═╝  ╚═╝
-"
-echo ""
-echo " Jax|Tech Setup Script will launch in 5 seconds..."
-
-sleep 5
-
-clear
-
-## Package to install on Archcraft
-#PACKAGE_NAME="gtk3-nocsd-git"
-#
-## Detect distro from /etc/os-release
-#if [[ -f /etc/os-release ]]; then
-#    . /etc/os-release
-#
-#    # Check for Archcraft
-#    if [[ "$ID" == "archcraft" ]] || [[ "$NAME" == *"Archcraft"* ]]; then
-#        echo "Archcraft detected."
-#        echo "Installing package: $PACKAGE_NAME"
-#
-#        sudo pacman -Sy --needed --noconfirm "$PACKAGE_NAME"
-#
-#    # Check for regular Arch Linux
-#    elif [[ "$ID" == "arch" ]]; then
-#        echo "Arch Linux detected."
-#        #echo "No action needed."
-#
-#    else
-#        echo "Unsupported distribution: $NAME"
-#    fi
-#else
-#    echo "Cannot determine Linux distribution."
-#    exit 1
-#fi
-
 ##################################################################################################
 #################################### INSTALL BASE APPS ###########################################
 ##################################################################################################
-#error_handler() {
-#    echo ""
-#    echo "An error occurred. Press Enter to continue..."
-#    read
-#}
-#
-#trap 'error_handler' ERR
 
 sudo pacman -Syu fish eza fastfetch git vim neovim gcc make base-devel pkgconf xorg xorg-xinit feh gxmessage sxiv python-pywal \
 terminus-font ttf-mononoki-nerd noto-fonts-emoji lightdm lightdm-gtk-greeter openssh firefox qutebrowser mousepad figlet sxhkd \
 slock dunst xwallpaper calcurse xcompmgr zathura unclutter
 sleep 20
-
-clear
-
-[ ! -d ~/.local/src ] && mkdir -p ~/.local/src 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dwm ~/.local/src/ 2>&1 | tee -a $LOG
-###git clone https://github.com/lukesmithxyz/dwm ~/.local/src/dwm
-cd ~/.local/src/dwm
-echo "Compiling dwm - Dynamic Window Manager"
-sudo make && sudo make install
-echo "Compiling dwm - Complete"
-sleep 10
-
-clear
-
-cp -r $INSTALL_PATH/dmenu ~/.local/src/ 2>&1 | tee -a $LOG
-###git clone https://github.com/lukesmithxyz/dmenu ~/.local/src/dmenu
-cd ~/.local/src/dmenu
-echo "Compiling dmenu - Dynamic Menu"
-sudo make && sudo make install
-echo "Compiling dmenu - Complete"
-sleep 10
-
-clear
-
-cp -r $INSTALL_PATH/st ~/.local/src/ 2>&1 | tee -a $LOG
-###git clone https://github.com/lukesmithxyz/st ~/.local/src/st
-cd ~/.local/src/st
-echo "Compiling st - Simple Terminal"
-sudo make && sudo make install
-echo "Compiling st - Complete"
-sleep 10
-
-clear
-
-cp -r $INSTALL_PATH/dwmblocks ~/.local/src/ 2>&1 | tee -a $LOG
-###git clone https://github.com/lukesmithxyz/dwmblocks ~/.local/src/dwmblocks
-cd ~/.local/src/dwmblocks
-echo "Compiling dwmblocks - Modular status bar"
-sudo make && sudo make install
-echo "Compiling dwmblocks - Complete"
-sleep 10
-
-clear
-
-[ ! -d ~/.config ] && mkdir -p ~/.config 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.config/* ~/.config/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.local/* ~/.local/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.gtkrc-2.0 ~/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.xprofile ~/ 2>&1 | tee -a $LOG
-cp -r $INSTALL_PATH/dotfiles/.zprofile ~/ 2>&1 | tee -a $LOG
-echo "Dotfiles Copy Complete"
-sleep 10
-
-clear
-
-echo ""
-echo "Please enter sudo password if requested..."
-echo ""
-sleep 5
 
 ##### wallpapers -- Make sure wallpapers directory exists or add wallpapers if it doesn't exist
 [ ! -d ~/wallpapers ] && mkdir -p ~/wallpapers 2>&1 | tee -a $LOG
@@ -170,13 +42,6 @@ fi
 
 ##### .vimrc -- Add .vimrc file to $HOME directory
 cp $INSTALL_PATH/dotfiles/.vimrc ~/ 2>&1 | tee -a $LOG
-
-##### lightdm -- Enable and start lightdm
-echo "Enabling and starting lightdm..."
-sleep 5
-sudo systemctl enable lightdm
-sudo systemctl start lightdm
-sleep 5
 
 ##### openssh -- Enable and start openssh
 echo "Enabling and starting openssh..."
