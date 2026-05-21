@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# Update memory usage for dwmblocks
-free | awk '/^Mem/ {printf "%.0f%%", $3*100/$2 }'

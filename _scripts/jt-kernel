@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# Show kernel version in dwmblocks
-uname -r
