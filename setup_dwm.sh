@@ -1,6 +1,5 @@
 ##### PACKAGES
 gxmessage
-sxiv 
 
 terminus-font
 ttf-mononoki-nerd
