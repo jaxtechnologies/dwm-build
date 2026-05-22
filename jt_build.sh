@@ -241,7 +241,8 @@ makeuserjs(){
 }
 
 gituserrice(){
-	git clone https://github.com/jaxtechnologies/wallpapers.git "/home/$name/"
+	git clone https://github.com/jaxtechnologies/wallpapers.git /home/$name/
+	sleep 10
 }
 
 lightdm_start() {
