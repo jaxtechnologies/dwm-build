@@ -241,9 +241,9 @@ makeuserjs(){
 }
 
 gituserrice(){
-	git clone https://github.com/jaxtechnologies/jt-music.git /home/$name/Music
-	git clone https://github.com/jaxtechnologies/jt-wallpapers.git /home/$name/Wallpapers
-	sleep 10
+	sudo -u "$name" git clone https://github.com/jaxtechnologies/jt-music.git /home/$name/Music
+	sudo -u "$name" git clone https://github.com/jaxtechnologies/jt-wallpapers.git /home/$name/Wallpapers
+	sleep 5
 }
 
 lightdm_start() {
