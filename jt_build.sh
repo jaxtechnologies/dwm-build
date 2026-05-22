@@ -241,6 +241,11 @@ makeuserjs(){
 }
 
 lightdm_start() {
+##### xsessions -- Make sure xsessions directory exists and add dwm.desktop file
+[ ! -d /usr/share/xsessions ] && sudo mkdir -p /usr/share/xsessions
+##### This file allows users to select DWM as a session option when logging into lightdm display manager.
+sudo cp "/home/$name/dwm.desktop" /usr/share/xsessions/
+##### The following commands enable lightdm as a service and start during current session
 sudo systemctl enable lightdm
 sudo systemctl start lightdm
 }
