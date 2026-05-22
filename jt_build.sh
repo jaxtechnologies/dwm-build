@@ -240,6 +240,10 @@ makeuserjs(){
 	chown "$name:wheel" "$arkenfox" "$userjs"
 }
 
+gituserrice(){
+	git clone https://github.com/jaxtechnologies/wallpapers.git "/home/$name/"
+}
+
 lightdm_start() {
 ##### xsessions -- Make sure xsessions directory exists and add dwm.desktop file
 [ ! -d /usr/share/xsessions ] && sudo mkdir -p /usr/share/xsessions
@@ -392,6 +396,9 @@ rm -f /etc/sudoers.d/jaxtech-temp
 
 # Last message! Install complete!
 finalize
+
+# Git User Rice Files
+gituserrice
 
 # Enable and start lightdm
 lightdm_start
