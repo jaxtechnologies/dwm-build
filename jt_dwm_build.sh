@@ -1,5 +1,5 @@
 #!/bin/sh
-# Jax|Tech's Build Script
+# Jax|Tech's DWM Build Script
 # by JaxTechnologies
 # Modeled after LukeSmith's LARBS Install
 # License: GNU GPLv3
@@ -12,7 +12,7 @@
 #
 
 ##### OPTIONS AND VARIABLES #####
-dotfilesrepo="https://github.com/jaxtechnologies/jt-dotfiles.git"
+dotfilesrepo="https://github.com/jaxtechnologies/jt-dwm-dotfiles.git"
 progsfile="https://raw.githubusercontent.com/jaxtechnologies/jt-build/master/apps_dwm.csv"
 aurhelper="yay"
 repobranch="master"
