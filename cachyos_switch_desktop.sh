@@ -123,8 +123,8 @@ install_cinnamon () {
 	sudo pacman -S cinnamon gnome-terminal nemo-fileroller lightdm lightdm-gtk-greeter --needed --noconfirm
     sleep 10
 	cp -r /etc/skel/.config ~/.config
-    clear
 	sudo systemctl enable lightdm
+    clear
     echo ""
     echo " Cinnamon installed. Please reboot and select Cinnamon Session from the login screen to start using it."
     sleep 10
