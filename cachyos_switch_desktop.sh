@@ -68,6 +68,7 @@ remove_current_desktop () {
 			;;
 		*)
 			echo "No supported current desktop found in XDG_CURRENT_DESKTOP: $(get_current_desktop)"
+			echo "Continuing Setup... Enter sudo password when asked..."
 			;;
 	esac
 }
