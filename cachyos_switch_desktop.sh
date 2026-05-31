@@ -1,0 +1,291 @@
+#!/usr/bin/bash
+# Script to change Desktop Environments
+# 2026-03-26
+# Eddie Reynolds
+#
+
+get_current_desktop () {
+    printf '%s\n' "${DESKTOP_SESSION:-Unknown}"
+}
+
+get_current_desktop_key () {
+	case "$(get_current_desktop | tr '[:upper:]' '[:lower:]')" in
+		*cinnamon*)
+			echo "cinnamon"
+			;;
+		*cosmic*)
+			echo "cosmic"
+			;;
+		*gnome*)
+			echo "gnome"
+			;;
+		*i3*)
+			echo "i3"
+			;;
+		*kde*|*plasma*)
+			echo "kde"
+			;;
+		*niri*)
+			echo "niri"
+			;;
+		*openbox*)
+			echo "obenbox"
+			;;
+		*qtile*)
+			echo "qtile"
+			;;
+		*)
+			echo ""
+			;;
+	esac
+}
+
+remove_current_desktop () {
+	case "$(get_current_desktop_key)" in
+		cinnamon)
+			remove_cinnamon
+			;;
+		cosmic)
+			remove_cosmic
+			;;
+		gnome)
+			remove_gnome
+			;;
+		i3)
+			remove_i3
+			;;
+		kde)
+			remove_kde
+			;;
+		niri)
+			remove_niri
+			;;
+		openbox)
+			remove_openbox
+			;;
+		qtile)
+			remove_qtile
+			;;
+		*)
+			echo "No supported current desktop found in XDG_CURRENT_DESKTOP: $(get_current_desktop)"
+			;;
+	esac
+}
+
+########################################
+##### REMOVE PREVIOUS SETTINGS
+########################################
+
+remove_cinnamon () {
+	##### cachyos-cinnamon-settings don't exist
+	sudo pacman -R cachyos-cinnamon-settings --noconfirm
+}
+
+remove_cosmic () {
+	##### cachyos-cosmic-settings don't exist
+	sudo pacman -R cachyos-cosmic-settings --noconfirm
+}
+
+remove_gnome () {
+	##### cachyos-gnome-settings don't exist
+	sudo pacman -R cachyos-gnome-settings --noconfirm
+}
+
+remove_i3 () {
+	sudo pacman -R cachyos-i3wm-settings --noconfirm
+}
+
+remove_kde () {
+	sudo pacman -R cachyos-kde-settings --noconfirm
+}
+
+remove_niri () {
+	sudo pacman -R cachyos-niri-settings --noconfirm
+}
+
+remove_openbox () {
+	sudo pacman -R cachyos-openbox-settings --noconfirm
+}
+
+remove_qtile () {
+	sudo pacman -R cachyos-qtile-settings --noconfirm
+}
+
+########################################
+##### INSTALL NEW DESKTOP ENVIRONMENT
+########################################
+
+install_cinnamon () {
+	remove_current_desktop
+	sleep 10
+	sudo pacman -Syu 
+	sudo pacman -S cinnamon gnome-terminal nemo-fileroller --needed --noconfirm
+    sleep 10
+	cp -r /etc/skel/.config ~/.config
+    clear
+    echo ""
+    echo " Cinnamon installed. Please reboot and select Cinnamon Session from the login screen to start using it."
+    sleep 10
+    exit_menu
+}
+
+install_cosmic () {
+	remove_current_desktop
+	sudo pacman -Syu cosmic-session cosmic-text-editor cosmic-terminal cosmic-store --needed --noconfirm
+    sleep 5
+	cp -r /etc/skel/.config ~/.config
+    clear
+    echo ""
+    echo " Cosmic installed. Please reboot and select Cosmic Session from the login screen to start using it."
+    sleep 20
+    exit_menu
+}
+
+install_gnome () {
+	remove_current_desktop
+	##### gnome-extra will install a lot of the gnome suite of apps...
+	sudo pacman -Syu gnome cachyos-gnome-settings --needed --noconfirm
+    sleep 5
+	cp -r /etc/skel/.config ~/.config
+    clear
+    echo ""
+    echo " Gnome installed. Please reboot and select Gnome Session from the login screen to start using it."
+    sleep 20
+    exit_menu
+}
+
+install_i3 () {
+	remove_current_desktop
+	sudo pacman -Syu i3-wm i3status cachyos-i3wm-settings --needed --noconfirm
+    sleep 5
+	cp -r /etc/skel/.config ~/.config
+    clear
+    echo ""
+    echo " i3 installed. Please reboot and select i3 Session from the login screen to start using it."
+    sleep 20
+    exit_menu
+}
+
+install_kde () {
+	remove_current_desktop
+	sudo pacman -Syu plasma-desktop cachyos-kde-settings --needed --noconfirm
+    sleep 5
+	cp -r /etc/skel/.config ~/.config
+    clear
+    echo ""
+    echo " KDE Plasma installed. Please reboot and select KDE Plasma Session from the login screen to start using it."
+    sleep 20
+    exit_menu
+}
+
+install_niri () {
+	remove_current_desktop
+	sudo pacman -Syu niri cachyos-niri-settings --needed --noconfirm
+    sleep 5
+	cp -r /etc/skel/.config ~/.config
+    clear
+    echo ""
+    echo " Niri installed. Please reboot and select Niri Session from the login screen to start using it."
+    sleep 20
+    exit_menu
+}
+
+##### cachyos-openbox-settings needs nitrogen
+##### obconf not available
+##### nitrogen not available
+##### lxappearance-obconf installs
+##### sudo pacman -S openbox obconf lxappearance-obconf tint2 jgmenu feh xorg-xinit
+##### sudo pacman -S openbox tint2 lxappearance-obconf obconf-qt nitrogen jgmenu
+install_openbox () {
+	remove_current_desktop
+	sudo pacman -Syu openbox cachyos-openbox-settings --needed --noconfirm
+    sleep 5
+	cp -r /etc/skel/.config ~/.config
+    clear
+    echo ""
+    echo " Openbox installed. Please reboot and select Openbox Session from the login screen to start using it."
+    sleep 20
+    exit_menu
+}
+
+install_qtile () {
+	remove_current_desktop
+	sudo pacman -Syu qtile cachyos-qtile-settings --needed --noconfirm
+    sleep 5
+	cp -r /etc/skel/.config ~/.config
+    clear
+    echo ""
+    echo " Qtile installed. Please reboot and select Qtile Session from the login screen to start using it."
+    sleep 20
+    exit_menu
+}
+
+exit_menu () {
+clear
+exit
+}
+
+########################################
+##### START OF MENU SELECTIONS
+########################################
+
+while : # Loop forever
+do
+clear
+
+GetCurrentEnv="$(get_current_desktop)"
+
+echo ""
+echo "The current desktop is" $GetCurrentEnv
+echo ""
+echo ""
+cat << !
+
+ -----------------------------------------------------------
+ |              D E S K T O P     M E N U                  |
+ -----------------------------------------------------------
+ | a) Install Cinnamon  i)                  q)             |
+ | b) Install Cosmic    j)                  r)             |
+ | c) Install Gnome     k)                  s)             |
+ | d) Install i3        l)                  t)             |
+ | e) Install KDE       m)                  u)             |
+ | f) Install Niri      n)                  v)             |
+ | g) Install Openbox   o)                  w)             |
+ | h) Install Qtile     p)                  x) exit menu   |
+ -----------------------------------------------------------
+
+!
+
+echo -n "  Your choice? : "
+read choice
+
+case $choice in
+a) install_cinnamon ;;
+b) install_cosmic ;;
+c) install_gnome ;;
+d) install_i3 ;;
+e) install_kde ;;
+f) install_niri ;;
+g) install_openbox ;;
+h) install_qtile ;;
+i) function_i ;;
+j) function_j ;;
+k) function_k ;;
+l) function_l ;;
+m) function_m ;;
+n) function_n ;;
+o) function_o ;;
+p) function_p ;;
+q) function_q ;;
+r) function_r ;;
+s) function_s ;;
+t) function_t ;;
+u) function_u ;;
+v) function_v ;;
+w) function_w ;;
+x) exit_menu ;;
+
+*) echo "\"$choice\" is not valid "; sleep 2 ;;
+esac
+
+done
