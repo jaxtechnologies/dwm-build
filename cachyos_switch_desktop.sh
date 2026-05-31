@@ -133,13 +133,16 @@ install_cinnamon () {
 
 install_cosmic () {
 	remove_current_desktop
-	sudo pacman -Syu cosmic-session cosmic-text-editor cosmic-terminal cosmic-store --needed --noconfirm
-    sleep 5
+	sleep 10
+	sudo pacman -Syu --noconfirm
+	sudo pacman -S cosmic-session cosmic-text-editor cosmic-terminal cosmic-store lightdm lightdm-gtk-greeter --needed --noconfirm
+    sleep 10
 	cp -r /etc/skel/.config ~/.config
+	sudo systemctl enable lightdm
     clear
     echo ""
     echo " Cosmic installed. Please reboot and select Cosmic Session from the login screen to start using it."
-    sleep 20
+    sleep 10
     exit_menu
 }
 
