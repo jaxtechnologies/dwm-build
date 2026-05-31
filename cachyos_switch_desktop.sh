@@ -43,30 +43,39 @@ get_current_desktop_key () {
 remove_current_desktop () {
 	case "$(get_current_desktop_key)" in
 		cinnamon)
+			clear
 			remove_cinnamon
 			;;
 		cosmic)
+			clear
 			remove_cosmic
 			;;
 		gnome)
+			clear
 			remove_gnome
 			;;
 		i3)
+			clear
 			remove_i3
 			;;
 		kde)
+			clear
 			remove_kde
 			;;
 		niri)
+			clear
 			remove_niri
 			;;
 		openbox)
+			clear
 			remove_openbox
 			;;
 		qtile)
+			clear
 			remove_qtile
 			;;
 		*)
+			clear
 			echo "No supported current desktop found in XDG_CURRENT_DESKTOP: $(get_current_desktop)"
 			echo "Continuing Setup... Enter sudo password when asked..."
 			;;
@@ -118,7 +127,7 @@ remove_qtile () {
 
 install_cinnamon () {
 	remove_current_desktop
-	clear
+	sleep 10
 	sudo pacman -Syu --noconfirm
 	sudo pacman -S cinnamon gnome-terminal nemo-fileroller lightdm lightdm-gtk-greeter --needed --noconfirm
     sleep 10
@@ -133,7 +142,7 @@ install_cinnamon () {
 
 install_cosmic () {
 	remove_current_desktop
-	clear
+	sleep 10
 	sudo pacman -Syu --noconfirm
 	sudo pacman -S cosmic-session cosmic-text-editor cosmic-terminal cosmic-store lightdm lightdm-gtk-greeter --needed --noconfirm
     sleep 10
