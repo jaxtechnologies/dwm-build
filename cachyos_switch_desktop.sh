@@ -205,10 +205,10 @@ install_niri () {
 	remove_current_desktop
 	sleep 10
 	sudo pacman -Syu --noconfirm
-	sudo pacman -S --asexplicit niri xwayland-satellite polkit-kde-agent cachyos-niri-settings lightdm lightdm-gtk-greeter --needed --noconfirm
+	sudo pacman -S niri xwayland-satellite polkit-kde-agent cachyos-niri-settings plasma-login-manager --needed --noconfirm --asexplicit
     sleep 10
 	cp -r /etc/skel/.config ~/.config
-	sudo systemctl enable lightdm
+	sudo systemctl enable plasmalogin
     clear
     echo ""
     echo " Niri installed. Please reboot and select Niri Session from the login screen to start using it."
