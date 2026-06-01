@@ -206,7 +206,7 @@ install_niri () {
 	sleep 10
 	sudo pacman -Syu --noconfirm
 	#sudo pacman -S niri xwayland-satellite polkit-kde-agent cachyos-niri-noctalia cachyos-niri-settings plasma-login-manager --needed --noconfirm --asexplicit
-	sudo pacman -S niri xwayland-satellite polkit-kde-agent cachyos-niri-noctalia cachyos-niri-settings lightdm lightdm-gtk-greeter --needed --noconfirm --asexplicit
+	sudo pacman -S niri xwayland-satellite polkit-kde-agent cachyos-niri-noctalia cachyos-niri-settings lightdm lightdm-gtk-greeter --needed --noconfirm
     sleep 10
 	cp -r /etc/skel/.config ~/.config
 	#sudo systemctl enable plasmalogin
