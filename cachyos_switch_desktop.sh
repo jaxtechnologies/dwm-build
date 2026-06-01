@@ -205,11 +205,9 @@ install_niri () {
 	remove_current_desktop
 	sleep 10
 	sudo pacman -Syu --noconfirm
-	#sudo pacman -S niri xwayland-satellite polkit-kde-agent cachyos-niri-noctalia cachyos-niri-settings plasma-login-manager --needed --noconfirm --asexplicit
 	sudo pacman -S niri xwayland-satellite polkit cachyos-niri-noctalia lightdm lightdm-gtk-greeter --needed --noconfirm
     sleep 10
 	cp -r /etc/skel/.config ~/.config
-	#sudo systemctl enable plasmalogin
 	sudo systemctl enable lightdm
     clear
     echo ""
@@ -226,25 +224,31 @@ install_niri () {
 ##### sudo pacman -S openbox tint2 lxappearance-obconf obconf-qt nitrogen jgmenu
 install_openbox () {
 	remove_current_desktop
-	sudo pacman -Syu openbox cachyos-openbox-settings lightdm lightdm-gtk-greeter --needed --noconfirm
-    sleep 5
+	sleep 10
+	sudo pacman -Syu --noconfirm
+	sudo pacman -S openbox cachyos-openbox-settings lightdm lightdm-gtk-greeter --needed --noconfirm
+    sleep 10
 	cp -r /etc/skel/.config ~/.config
+	sudo systemctl enable lightdm
     clear
     echo ""
     echo " Openbox installed. Please reboot and select Openbox Session from the login screen to start using it."
-    sleep 20
+    sleep 10
     exit_menu
 }
 
 install_qtile () {
 	remove_current_desktop
-	sudo pacman -Syu qtile cachyos-qtile-settings --needed --noconfirm
-    sleep 5
+	sleep 10
+	sudo pacman -Syu --noconfirm
+	sudo pacman -S qtile cachyos-qtile-settings --needed --noconfirm
+    sleep 10
 	cp -r /etc/skel/.config ~/.config
+	sudo systemctl enable lightdm
     clear
     echo ""
     echo " Qtile installed. Please reboot and select Qtile Session from the login screen to start using it."
-    sleep 20
+    sleep 10
     exit_menu
 }
 
