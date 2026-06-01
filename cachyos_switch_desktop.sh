@@ -203,13 +203,16 @@ install_kde () {
 
 install_niri () {
 	remove_current_desktop
-	sudo pacman -Syu niri cachyos-niri-settings lightdm lightdm-gtk-greeter --needed --noconfirm
-    sleep 5
+	sleep 10
+	sudo pacman -Syu --noconfirm
+	sudo pacman -S niri cachyos-niri-settings lightdm lightdm-gtk-greeter --needed --noconfirm
+    sleep 10
 	cp -r /etc/skel/.config ~/.config
+	sudo systemctl enable lightdm
     clear
     echo ""
     echo " Niri installed. Please reboot and select Niri Session from the login screen to start using it."
-    sleep 20
+    sleep 10
     exit_menu
 }
 
