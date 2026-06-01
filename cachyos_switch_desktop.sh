@@ -188,19 +188,22 @@ install_i3 () {
 
 install_kde () {
 	remove_current_desktop
-	sudo pacman -Syu plasma-desktop cachyos-kde-settings --needed --noconfirm
-    sleep 5
+	sleep 10
+	sudo pacman -Syu --noconfirm
+	sudo pacman -S plasma-desktop cachyos-kde-settings lightdm lightdm-gtk-greeter --needed --noconfirm
+    sleep 10
 	cp -r /etc/skel/.config ~/.config
+	sudo systemctl enable lightdm
     clear
     echo ""
     echo " KDE Plasma installed. Please reboot and select KDE Plasma Session from the login screen to start using it."
-    sleep 20
+    sleep 10
     exit_menu
 }
 
 install_niri () {
 	remove_current_desktop
-	sudo pacman -Syu niri cachyos-niri-settings --needed --noconfirm
+	sudo pacman -Syu niri cachyos-niri-settings lightdm lightdm-gtk-greeter --needed --noconfirm
     sleep 5
 	cp -r /etc/skel/.config ~/.config
     clear
@@ -218,7 +221,7 @@ install_niri () {
 ##### sudo pacman -S openbox tint2 lxappearance-obconf obconf-qt nitrogen jgmenu
 install_openbox () {
 	remove_current_desktop
-	sudo pacman -Syu openbox cachyos-openbox-settings --needed --noconfirm
+	sudo pacman -Syu openbox cachyos-openbox-settings lightdm lightdm-gtk-greeter --needed --noconfirm
     sleep 5
 	cp -r /etc/skel/.config ~/.config
     clear
